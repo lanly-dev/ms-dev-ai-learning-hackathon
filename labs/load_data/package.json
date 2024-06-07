@@ -1,0 +1,17 @@
+{
+  "name": "mongodb-nodejs-devguide-load-data",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "A Node.js application that connects to MongoDB and uses bulk write operations to load data.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "dotenv": "16.4.4",
+    "mongodb": "6.3.0",
+    "node-fetch": "^3.3.2"
+  },
+  "author": "Microsoft",
+  "license": "MIT"
+}
