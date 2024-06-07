@@ -1,0 +1,1 @@
+https://github.com/AzureCosmosDB/Azure-OpenAI-Node.js-Developer-Guide/blob/main/Labs/first_cosmos_db_application/README.md
