@@ -1,6 +1,8 @@
 {
   "cSpell.words": [
     "aoai",
-    "OPENAI"
+    "langchain",
+    "OPENAI",
+    "vectorstores"
   ]
 }
