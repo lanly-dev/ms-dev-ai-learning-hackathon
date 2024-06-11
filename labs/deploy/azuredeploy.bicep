@@ -1,19 +1,17 @@
-/* *************************************************************** 
+/* ***************************************************************
 Azure Cosmos DB + Azure OpenAI Node.js developer guide lab
 ******************************************************************
 This Azure resource deployment template uses some of the following practices:
 - [Abbrevation examples for Azure resources](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-best-practices/resource-abbreviations)
 */
 
-
-
 /* *************************************************************** */
 /* Parameters */
 /* *************************************************************** */
 
 @description('Location where all resources will be deployed. This value defaults to the **East US** region.')
-@allowed([  
-  'eastus'  
+@allowed([
+  'eastus'
   'francecentral'
   'southcentralus'
   'uksouth'
@@ -87,7 +85,7 @@ var openAiSettings = {
     }
     sku: {
       name: 'Standard'
-      capacity: 120     
+      capacity: 120
     }
   }
 }
@@ -109,7 +107,7 @@ var appServiceSettings = {
       repo: 'https://github.com/AzureCosmosDB/Azure-OpenAI-Developer-Guide-Front-End.git'
       branch: 'main'
     }
-  }  
+  }
 }
 
 /* *************************************************************** */
@@ -162,7 +160,7 @@ resource openAiAccount 'Microsoft.CognitiveServices/accounts@2023-05-01' = {
   name: openAiSettings.name
   location: location
   sku: {
-    name: openAiSettings.sku    
+    name: openAiSettings.sku
   }
   kind: 'OpenAI'
   properties: {
@@ -173,7 +171,7 @@ resource openAiAccount 'Microsoft.CognitiveServices/accounts@2023-05-01' = {
 
 resource openAiEmbeddingsModelDeployment 'Microsoft.CognitiveServices/accounts/deployments@2023-05-01' = {
   parent: openAiAccount
-  name: openAiSettings.embeddingsModel.deployment.name  
+  name: openAiSettings.embeddingsModel.deployment.name
   sku: {
     name: openAiSettings.embeddingsModel.sku.name
     capacity: openAiSettings.embeddingsModel.sku.capacity
@@ -202,7 +200,7 @@ resource openAiCompletionsModelDeployment 'Microsoft.CognitiveServices/accounts/
       format: 'OpenAI'
       name: openAiSettings.completionsModel.name
       version: openAiSettings.completionsModel.version
-    }    
+    }
   }
 }
 
