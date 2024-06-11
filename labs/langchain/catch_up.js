@@ -5,13 +5,11 @@ const { OpenAIClient, AzureKeyCredential } = require('@azure/openai')
 // set up the MongoDB client
 const dbClient = new MongoClient(process.env.AZURE_COSMOSDB_CONNECTION_STRING)
 // set up the Azure OpenAI client
-const embeddingsDeploymentName = 'text-embedding-ada-002'
-// const aoaiClient = new OpenAIClient(
-//   'https://' + process.env.AZURE_OPENAI_API_INSTANCE_NAME + '.openai.azure.com/',
-//   new AzureKeyCredential(process.env.AZURE_OPENAI_API_KEY)
-// )
-
-const aoaiClient = new OpenAIClient(process.env.AZURE_OPENAI_API_ENDPOINT, new AzureKeyCredential(process.env.AZURE_OPENAI_API_KEY))
+const embeddingsDeploymentName = 'embeddings'
+const aoaiClient = new OpenAIClient(
+  'https://' + process.env.AZURE_OPENAI_API_INSTANCE_NAME + '.openai.azure.com/',
+  new AzureKeyCredential(process.env.AZURE_OPENAI_API_KEY)
+)
 
 async function main() {
   try {
@@ -29,7 +27,7 @@ async function main() {
     // Delete all existing products and insert the new data
     await productCollection.deleteMany({})
     // Utilize bulkWrite to insert all the products at once
-    var result = await productCollection.bulkWrite(
+    const result = await productCollection.bulkWrite(
       productData.map((product) => ({
         insertOne: {
           document: product
