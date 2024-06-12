@@ -67,8 +67,10 @@ var openAiSettings = {
   maxConversationTokens: '100'
   maxCompletionTokens: '500'
   completionsModel: {
-    name: 'gpt-35-turbo'
-    version: '0613'
+    name: 'gpt-4o'
+    version: '2024-05-13'
+    // name: 'gpt-35-turbo'
+    // version: '0613'
     deployment: {
       name: 'completions'
     }
@@ -150,7 +152,6 @@ resource mongoFirewallRulesAllowAll 'Microsoft.DocumentDB/mongoClusters/firewall
     endIpAddress: '255.255.255.255'
   }
 }
-
 
 /* *************************************************************** */
 /* Azure OpenAI */
@@ -242,7 +243,6 @@ resource appServicePlan 'Microsoft.Web/serverfarms@2022-03-01' = {
   }
 }
 
-
 /* *************************************************************** */
 /* Front-end Web App Hosting - Azure App Service */
 /* *************************************************************** */
@@ -281,7 +281,6 @@ resource appServiceWebDeployment 'Microsoft.Web/sites/sourcecontrols@2021-03-01'
   }
 }
 
-
 /* *************************************************************** */
 /* Registry for Back-end API Image - Azure Container Registry */
 /* *************************************************************** */
@@ -312,10 +311,12 @@ resource containerAppEnvironment 'Microsoft.App/managedEnvironments@2023-05-01' 
     }
     workloadProfiles: [
       {
-        name: 'Warm'
-        minimumCount: 1
-        maximumCount: 10
-        workloadProfileType: 'E4'
+        // name: 'Warm'
+        // minimumCount: 1
+        // maximumCount: 10
+        // workloadProfileType: 'E4'
+        name: 'Consumption'
+        workloadProfileType: 'Consumption'
       }
     ]
     infrastructureResourceGroup: 'ME_${resourceGroup().name}'
